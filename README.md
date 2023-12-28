@@ -1,25 +1,25 @@
 # Certificate Issuer
 
-## Conceito do projeto
-Atualmente o processo de validacão de créditos da Universidade é muito burocrático. Temos uma enorme dependência em papéis e documentos que muitas vezes perdemos ao longo do curso, tanto quanto, uma dependência na secretaria do curso para a validação dos créditos de todos os estudantes.
+## Project concept
+Currently, the University's credit validation process is very bureaucratic. We have a huge dependence on papers and documents that we often lose throughout the course, as well as a dependence on the course secretariat to validate the credits of all students.
 
-O intuito desse projecto é utilizar os contratos inteligentes da rede distribuída do Ethereum para válidar certificados da Universidade. Assim podemos garantir que o certificado foi emitido por uma entidade específica, e também, garantir que os documentos não serão perdidos, pois ficarão distríbuidos na rede para sempre.
+This project aims to use smart contracts from the Ethereum distributed network to validate University certificates. This way we can guarantee that the certificate was issued by a specific entity, and also guarantee that the documents will not be lost, as they will be distributed on the network forever.
 
-Atualmente o projeto esta funcionando para uma única entidade (Hackoonspace), mas o objetivo é aprimora-lo para pode ser utilizado por qualquer entidade.
+Currently, the project is working for a single entity (Hackoonspace), but the objective is to improve it so it can be used by any entity.
 
-## Pré-requisitos e recursos utilizados
-O projeto e as depêndencias são dividos em duas partes, backend e frontend respsctivamente. Para o backend nśo usamos Solidity para criação do contrato e Javascript e NodeJs(v16.19.1) para o script de teste e de deploy. Em relação aa depêndencias, é necessário instalar apenas a biblioteca `hardhat` que é responsável por permitir a criação de uma blockchain local.
+## Prerequisites and resources used
+The project and dependencies are divided into two parts, backend and frontend respectively. For the back-end we use Solidity to create the contract and Javascript and NodeJs (v16.19.1) for the test and deploy script. Regarding dependencies, it is only necessary to install the `hardhat` library, which is responsible for allowing the creation of a local blockchain.
 
-Já para o frontend nós utilizamos React e algumas bibliotecas comuns para ajudar na criação da interface que podem ser instaladas através do comando `npm install`.
+For the front-end we use React and some common libraries to help create the interface that can be installed using the `npm install` command.
 
-Por fim, será necessário possuir a Metamask instalada no navegador para conseguir testar a aplicação.
+Finally, you will need to have Metamask installed in your browser to be able to test the application.
 
-## Instalação
-Primeiro certifique-se que tem o `Javascript` e o `Node` instalados na sua máquina. A versão do node utilizada no projeto é a `v16.19.1`.
+## Installation
+First, make sure you have `Javascript` and `Node` installed on your machine. The node version used in the project is `v16.19.1`.
 
-_OBS: os passos a seguir são para executar o contrato em uma rede local, mas o intuito é oficializa-lo na rede oficial do Ethereum._
+_NOTE: the steps to follow are to execute the contract on a local network, but the aim is to make it official on the official Ethereum network._
 
-1 - **Instale as dependências**: garanta que está dentro da pasta raiz `/cerificate-issuer`, em seguida, instale as dependências dos módulos back-end e front-end;
+1 - **Install the dependencies**: ensure you are inside the root folder `/certificate-issuer`, then install the dependencies of the back-end and front-end modules;
 
 ``` bash
 cd front-end
@@ -30,13 +30,13 @@ npm install
 ```
 
 
-2- **Verifique se o projeto está funcionando corretamente**: para garantir que tudo está funcionando normalmente, dentro do caminho `/back-end`, execute o seguinte comando para compilar o contrato e realizar um teste de conexão com a Blockchain local.
+2- **Check if the project is working correctly**: to ensure that everything is working normally, within the `/back-end` path, run the following command to compile the contract and perform a connection test with the local Blockchain.
 
 ``` bash
 npx hardhat run scripts/run.js
 ```
 
-Após rodar o comando deve aparecer um prompt similar a esse, podendo ter diferenças nos endereços printados.
+After running the command, a prompt similar to this one should appear, although there may be differences in the printed addresses.
 
 ```
 Inicializando contrato.
@@ -60,67 +60,66 @@ Contract deployed by: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
 ]
 ```
 
-## Execução
+## Execution
 
-Para executar a aplicação localmente vá para pasta `/back-end` e siga os passos abaixo:
+To run the application locally go to the `/back-end` folder and follow the steps below:
 
-1- **Suba uma rede Ethereum local**: o comando abaixo irá subir a rede e printar uma lista de carteiras criadas pelo Hardhat, para conseguirmos testar o nosso contrato, e manterá uma rede local rodando enquanto o terminal não for finalizado.
+1- **Upload a local Ethereum network**: the command below will upload the network and print a list of wallets created by Hardhat, so that we can test our contract, and will keep a local network running until the terminal is finished.
 
 ``` bash
 npx hardhat node
 ```
 
-2- **Faça o deploy do contrato**: em outro terminal, continuando no caminho `/back-end`, execute o comando abaixo para fazer o deploy do contrato na rede local.
+2- **Deploy the contract**: in another terminal, continuing with the path `/back-end`, execute the command below to deploy the contract on the local network.
 
 ``` bash
 npx hardhat run scripts/deploy.js --network localhost
 ```
 
-3- **Faça a conexão entre a Metamask e a Blockchain local e adicione a carteira #0 da Blockchain de teste na Metamask**: isso pode ser feito seguindo esse tutorial [seguindo esse tutorial](https://medium.com/@kaishinaw/connecting-metamask-with-a-local-hardhat-network-7d8cea604dc6).
+3- **Make the connection between Metamask and the local Blockchain and add wallet #0 from the test Blockchain to Metamask**: this can be done by following this tutorial [following this tutorial](https://medium.com/@kaishinaw/connecting-metamask-with-a-local-hardhat-network-7d8cea604dc6).
 
-_OBS: quando for recriar a Blockchain local após realizar algumas operações será preciso resetar a Metamask, para isso siga os passos abaixo._
+_NOTE: when recreating the local Blockchain after performing some operations you will need to reset the Metamask, to do this follow the steps below._
 
-* _Dentro da Metamask, clique na sua foto;_
-* _Va em Settings;_
-* _Va em Advanced;_
-* _Clique em Reset Account._
+* _Within Metamask, click on your photo;_
+* _Go to Settings;_
+* _Go to Advanced;_
+* _Click on Reset Account._
 
-
-4- **Suba servidor do front-end**: esse comando irá subir a aplicação que se comunica com a rede Ethereum local em `http://localhost:5173/`.
+4- **Upload front-end server**: this command will upload the application that communicates with the local Ethereum network at `http://localhost:5173/`.
 
 ```bash
 cd ../front-end
 npm run dev
 ```
 
-### Como usar
+### How to use
 
-A interface da aplicação é muito simples possuindo apenas duas abas principais, Busca e Emissão. Ao abrir a aplicação você verá uma tela muito similar a está:
+The application interface is very simple, having only two main tabs, Search and Issuance. When opening the application you will see a screen very similar to this:
 
-![Tela Inicial Bloqueada](./docs/img/nao-conectado.png)
+![Home Screen Locked](./docs/img/nao-conectado.png)
 
-Para conectar a carteira e conseguir realizar emissão ou busca de certificados clique no botão "Conectar Carteira" e confirme a operação na Metamask. Após isso, você poderá realizar a emissão ou busca de certificados a vontade, precisando apenas preencher os campos de cada aba.
+To connect the wallet and be able to issue or search for certificates, click the "Connect Wallet" button and confirm the operation in Metamask. After that, you can issue or search for certificates at will, simply filling in the fields on each tab.
 
 <div style="text-align:center">
-  <div><strong>Emissão de Certificados</strong></div>
+  <div><strong>Certificate Issuance</strong></div>
   <img src="docs/img/tela-de-emissao.png" />
 </div>
 
 <div style="text-align:center">
-  <div><strong>Busca de Certificados</strong></div>
+  <div><strong>Certificate Search</strong></div>
   <img src="docs/img/tela-de-busca.png" />
 </div>
 
 
 
 
-## Bugs/problemas conhecidos
-Até o momento o projeto possui algumas limitações, como por exemplo a emissão do certificado que pode ser feita apenas pelo dono do contrato. No futuro vamos adicionar a funcionalidade para cadastrar outras entidades com essa permissão.
+## Known bugs/issues
+To date, the project has some limitations, such as issuing the certificate, which can only be done by the contract owner. In the future we will add functionality to register other entities with this permission.
 
 
-## Autores
+## Authors
 
-| Nome do Autor | LinkedIn | GitHub |
+| Author Name | LinkedIn | GitHub |
 | ------------- | -------- | ------ |
 | Alex Sandro Momi Junior| [Alex Junior](https://www.linkedin.com/in/alexmomijunior/) | [AlexJunior01](https://github.com/AlexJunior01)
 | João Victor Elias Costa  | [João Elias](https://www.linkedin.com/in/jvictore/) | [jvictore](https://github.com/jvictore)
